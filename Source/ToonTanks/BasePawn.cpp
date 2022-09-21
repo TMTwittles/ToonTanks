@@ -12,6 +12,16 @@ ABasePawn::ABasePawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>("Capsule Collider");
+	RootComponent = CapsuleComponent;
+
+	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>("Base Mesh");
+	BaseMesh->SetupAttachment(CapsuleComponent);
+
+	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>("Turret Mesh");
+	TurretMesh->SetupAttachment(BaseMesh);
+
+	ProjectileSpawnPoint = CreateDefaultSubobject<UStaticMeshComponent>("Projectile Spawn Point");
+	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
 // Called when the game starts or when spawned

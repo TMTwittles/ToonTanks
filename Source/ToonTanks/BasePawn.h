@@ -22,9 +22,16 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(EditAnywhere)
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
 	UCapsuleComponent* CapsuleComponent;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
+	UStaticMeshComponent* BaseMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
+	UStaticMeshComponent* TurretMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
+	UStaticMeshComponent* ProjectileSpawnPoint;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
