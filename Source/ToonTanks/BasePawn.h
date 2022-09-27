@@ -21,6 +21,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void RotateTurret(FVector LookAtPosition);
+
 private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
