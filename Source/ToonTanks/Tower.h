@@ -21,6 +21,12 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Tower Attributes", meta=(AllowPrivateAccess="true"))
 	float AttackDistance;
+
+	FTimerHandle FireRateTimerHandle;
+	float FireRate = 2.0f; // 2 Seconds. 
+
+	void CheckFireCondition();
 	
 	ATank* Tank;
 };
+

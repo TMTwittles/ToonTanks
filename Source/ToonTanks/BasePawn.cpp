@@ -45,6 +45,19 @@ void ABasePawn::RotateTurret(FVector LookAtPosition)
 			);
 }
 
+void ABasePawn::Fire()
+{
+	DrawDebugSphere(
+		GetWorld(),
+		ProjectileSpawnPoint->GetComponentLocation(),
+		25.0f,
+		12,
+		FColor::Red,
+		true,
+		30.0f
+		);
+}
+
 // Called every frame
 void ABasePawn::Tick(float DeltaTime)
 {
@@ -56,6 +69,6 @@ void ABasePawn::Tick(float DeltaTime)
 void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
 }
 

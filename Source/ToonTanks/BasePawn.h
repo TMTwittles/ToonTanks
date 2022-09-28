@@ -22,6 +22,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	void RotateTurret(FVector LookAtPosition);
+	void Fire();
 
 private:
 	
