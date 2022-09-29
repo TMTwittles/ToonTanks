@@ -34,6 +34,9 @@ private:
 	UStaticMeshComponent* TurretMesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Base Components", meta=(AllowPrivateAccess="true"))
 	UStaticMeshComponent* ProjectileSpawnPoint;
+
+	UPROPERTY(EditDefaultsOnly, Category="Combat")
+	TSubclassOf<class AProjectile> Projectile;
 	
 public:	
 	// Called every frame
