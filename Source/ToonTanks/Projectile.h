@@ -33,4 +33,6 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile components", meta=(AllowPrivateAccess="true"))
 	UProjectileMovementComponent* ProjectileMovementComponent;
 
+	UFUNCTION()
+	void OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector HitNormal, const FHitResult& Hit);
 };
