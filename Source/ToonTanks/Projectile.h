@@ -33,6 +33,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Projectile components", meta=(AllowPrivateAccess="true"))
 	UProjectileMovementComponent* ProjectileMovementComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Projectile Attributes", meta=(AllowPrivateAccess="true"))
+	float ProjectileDamageAmount;
+
 	UFUNCTION()
-	void OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector HitNormal, const FHitResult& Hit);
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector HitNormal, const FHitResult& Hit);
 };

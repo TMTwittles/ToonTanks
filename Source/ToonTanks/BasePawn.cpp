@@ -5,6 +5,7 @@
 
 #include "Projectile.h"
 #include "Components/CapsuleComponent.h"
+#include "EntitySystem/MovieSceneEntitySystemRunner.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -48,11 +49,12 @@ void ABasePawn::RotateTurret(FVector LookAtPosition)
 
 void ABasePawn::Fire()
 {
-	GetWorld()->SpawnActor<AProjectile>(
+	AProjectile* SpawnedProjectile = GetWorld()->SpawnActor<AProjectile>(
 		Projectile,
 		ProjectileSpawnPoint->GetComponentLocation(),
 		ProjectileSpawnPoint->GetComponentRotation()
 		);
+	SpawnedProjectile->SetOwner(this);
 }
 
 // Called every frame
