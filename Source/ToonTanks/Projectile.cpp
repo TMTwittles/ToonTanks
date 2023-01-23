@@ -2,6 +2,8 @@
 
 
 #include "Projectile.h"
+
+#include "HealthComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -34,20 +36,29 @@ void AProjectile::Tick(float DeltaTime)
 
 void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector HitNormal, const FHitResult& Hit)
 {
-	AActor* ProjectileOwner = GetOwner();
-	if (ProjectileOwner == NULL)
-	{
-		return;
-	}
+	auto MyOwner = GetOwner();
+	if (MyOwner == nullptr) return;
 
-	if (OtherActor == NULL || OtherActor == ProjectileOwner || OtherActor == this)
+	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
+	auto DamageTypeClass = UDamageType::StaticClass();
+
+	if (OtherActor && OtherActor != nullptr && OtherActor != MyOwner)
 	{
-		return;
+		UHealthComponent* OtherActorHealthComponent = OtherActor->FindComponentByClass<UHealthComponent>();
+		if (OtherActorHealthComponent != nullptr)
+		{
+			OtherActorHealthComponent->TakeDamage(ProjectileDamageAmount);	
+		}
+
+		// THIS CODE DOES NOT WORK
+		/*UGameplayStatics::ApplyDamage(
+			OtherActor,
+			ProjectileDamageAmount,
+			MyOwnerInstigator,
+			this,
+			DamageTypeClass);*/
+		
+		Destroy();
 	}
-	
-	AController* OwnerEventInstigator = ProjectileOwner->GetInstigatorController();
-	UClass* DamageType = UDamageType::StaticClass();
-	
-	UGameplayStatics::ApplyDamage(OtherActor, ProjectileDamageAmount, OwnerEventInstigator, this, DamageType);
 }
 
