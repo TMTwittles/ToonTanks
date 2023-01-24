@@ -18,10 +18,10 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (PlayerControllerReference != nullptr)
+	if (TankPlayerController != nullptr)
 	{
 		FHitResult HitResult;
-		bool Hit = PlayerControllerReference->GetHitResultUnderCursor(
+		bool Hit = TankPlayerController->GetHitResultUnderCursor(
 			ECollisionChannel::ECC_Visibility,
 			false,
 			HitResult
@@ -34,10 +34,17 @@ void ATank::Tick(float DeltaTime)
 	}
 }
 
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
+}
+
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-	PlayerControllerReference = Cast<APlayerController>(GetController());
+	TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

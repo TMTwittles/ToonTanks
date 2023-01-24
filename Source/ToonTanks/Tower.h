@@ -17,6 +17,9 @@ protected:
 	virtual void BeginPlay() override;
 public:
 	virtual void Tick(float DeltaTime) override;
+
+	void HandleDestruction();
+	
 private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Tower Attributes", meta=(AllowPrivateAccess="true"))

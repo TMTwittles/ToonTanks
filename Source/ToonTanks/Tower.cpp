@@ -14,14 +14,14 @@ void ATower::BeginPlay()
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
 	// Check fire condition will get called every 2 seconds. 
-	//GetWorldTimerManager().SetTimer(FireRateTimerHandle, this, &ATower::CheckFireCondition, FireRate, true);
+	GetWorldTimerManager().SetTimer(FireRateTimerHandle, this, &ATower::CheckFireCondition, FireRate, true);
 }
 
 void ATower::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	/*if (Tank != nullptr)
+	if (Tank != nullptr)
 	{
 		float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
 
@@ -29,8 +29,15 @@ void ATower::Tick(float DeltaTime)
 		{
 			RotateTurret(Tank->GetActorLocation());
 		}
-	}*/
+	}
 }
+
+void ATower::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
+
 
 void ATower::CheckFireCondition()
 {
