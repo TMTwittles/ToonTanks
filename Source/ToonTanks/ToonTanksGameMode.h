@@ -7,6 +7,7 @@
 #include "ToonTanksGameMode.generated.h"
 
 class ATank;
+class AToonTanksPlayerController;
 
 /**
  * 
@@ -24,5 +25,5 @@ protected:
 
 private:
 	ATank* Tank;
-	
+	AToonTanksPlayerController* ToonTanksPlayerController;
 };
